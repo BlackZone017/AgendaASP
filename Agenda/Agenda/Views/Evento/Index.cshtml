@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Agenda.Models.Evento>
+
+@{
+    ViewBag.Title = "Lista de Eventos";
+}
+
+<h2>Lista de Eventos</h2>
+
+@using (Html.BeginForm("Index", "Evento", FormMethod.Get))
+{
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Seleccione una fecha") <br />
+
+                @Html.TextBox("fecha")
+                <input type="submit" value="Buscar" class="btn btn-default" /><br />
+                <p>Utilice el formato yyyy-mm-dd</p>
+            </div>
+        </div>
+    </div>
+}
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lugar)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lugar)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
